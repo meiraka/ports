@@ -1,0 +1,3 @@
+packages/*/*/
+packages/*/*.tar.gz
+packages/*/*.zip
