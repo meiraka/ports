@@ -1,13 +1,7 @@
-all: devel desktop
-
-ALL = $(filter-out Makefile $(wildcard *.rules) $(wildcard *.defs), $(wildcard *))
-DESKTOP = compton libvte ttf-migu ttf-ricty-diminished
-DEVEL = $(filter-out $(DESKTOP), $(ALL))
-.PHONY: all clean devel desktop $(ALL)
+ALL = $(notdir $(wildcard packages/*))
+.PHONY: all clean $(ALL)
 
 all: $(ALL)
-devel: $(DEVEL)
-desktop: $(DESKTOP)
 clean:
 	@LIST="$(ALL)";\
 		for x in $$LIST; do\
@@ -17,5 +11,5 @@ clean:
 $(ALL):
 	@LIST="$@";\
 		for x in $$LIST; do\
-		cd "$$x"; make; make install;cd ..;\
+		cd "packages/$$x"; make; make install;cd ..;\
 		done
