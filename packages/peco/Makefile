@@ -31,4 +31,4 @@ build: build-dep fetch extract
 install:
 	cp $(WORKDIR)/peco $(INSTALL_PREFIX)/bin/
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules

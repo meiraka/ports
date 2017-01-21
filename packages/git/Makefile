@@ -2,13 +2,13 @@
 all: build
 
 INSTALL_PREFIX?=$(HOME)
-REQUIRE_APT=curl
+REQUIRE_APT=g++ libcurl4-openssl-dev libssl-dev
 
-USER=edihbrandon
-REPO=RictyDiminished
-TAG=3.2.3
+USER=git
+REPO=git
+TAG=2.10.2
 
-ARCHIVE=$(TAG).tar.gz
+ARCHIVE=v$(TAG).tar.gz
 WORKDIR=$(REPO)-$(TAG)
 CMAKE_ARGS = -DCMAKE_INSTALL_PREFIX:PATH=$(INSTALL_PREFIX)
 
@@ -26,9 +26,10 @@ fetch: $(ARCHIVE)
 extract: $(WORKDIR)
 build-dep: apt
 
-build: build-dep fetch extract
+build: $(WORKDIR) build-dep
+	cd $(WORKDIR); make
 
 install:
-	cp RictyDiminished-$(TAG)/*.ttf ~/.fonts
+	cd $(WORKDIR); make install
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules

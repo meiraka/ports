@@ -2,13 +2,13 @@
 all: build
 
 INSTALL_PREFIX?=$(HOME)
-REQUIRE_APT=git libtool libtool-bin autoconf automake cmake libncurses5-dev g++ pkg-config unzip
+REQUIRE_APT=curl
 
-USER=neovim
-REPO=neovim
-TAG=0.1.5
+USER=edihbrandon
+REPO=RictyDiminished
+TAG=3.2.3
 
-ARCHIVE=v$(TAG).tar.gz
+ARCHIVE=$(TAG).tar.gz
 WORKDIR=$(REPO)-$(TAG)
 CMAKE_ARGS = -DCMAKE_INSTALL_PREFIX:PATH=$(INSTALL_PREFIX)
 
@@ -26,10 +26,9 @@ fetch: $(ARCHIVE)
 extract: $(WORKDIR)
 build-dep: apt
 
-build: $(WORKDIR) build-dep
-	cd $(WORKDIR); make CMAKE_EXTRA_FLAGS="$(CMAKE_ARGS)"
+build: build-dep fetch extract
 
 install:
-	cd $(WORKDIR); make install
+	cp RictyDiminished-$(TAG)/*.ttf ~/.fonts
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules

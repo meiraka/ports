@@ -27,4 +27,4 @@ build-dep: apt
 install:
 	cd $(WORKDIR); ./install $(INSTALL_OPTIONS)
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules

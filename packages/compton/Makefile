@@ -31,4 +31,4 @@ build: $(WORKDIR)
 install:
 	cd $(WORKDIR); PREFIX=$(INSTALL_PREFIX) make install
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules

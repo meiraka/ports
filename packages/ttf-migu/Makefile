@@ -55,4 +55,4 @@ install:
 	cp -f ./*/*.ttf ~/.fonts/
 	fc-cache -vf
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules

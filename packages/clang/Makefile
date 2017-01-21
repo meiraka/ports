@@ -61,4 +61,4 @@ installed_$(RELEASE):| builded_$(RELEASE)
 
 install: installed_$(RELEASE)
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules

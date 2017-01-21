@@ -34,4 +34,4 @@ build: $(WORKDIR) build-dep
 install:
 	cd $(WORKDIR); make install
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules

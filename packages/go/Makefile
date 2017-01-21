@@ -31,4 +31,4 @@ install: $(WORKDIR)
 	@rm $(INSTALL_PATH)
 	ln -si $(CURDIR)/$(WORKDIR) $(INSTALL_PATH)
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules

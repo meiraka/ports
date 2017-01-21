@@ -1,16 +1,16 @@
 .PHONY: clean fetch extract build-dep build install
-all: build-dep build
+all: build
 
 INSTALL_PREFIX?=$(HOME)
-REQUIRE_APT=gperf gtk-doc-tools libglib2.0-dev libgtk-3-dev gobject-introspection
+REQUIRE_APT=git libtool libtool-bin autoconf automake cmake libncurses5-dev g++ pkg-config unzip
 
-USER=GNOME
-REPO=vte
-TAG=0.36.4
+USER=neovim
+REPO=neovim
+TAG=0.1.5
 
-ARCHIVE=$(TAG).tar.gz
+ARCHIVE=v$(TAG).tar.gz
 WORKDIR=$(REPO)-$(TAG)
-CONFIGURE_ARGS+= --prefix=$(INSTALL_PREFIX)
+CMAKE_ARGS = -DCMAKE_INSTALL_PREFIX:PATH=$(INSTALL_PREFIX)
 
 $(ARCHIVE):
 	curl -L https://github.com/$(USER)/$(REPO)/archive/$(ARCHIVE) -o $(ARCHIVE)
@@ -26,13 +26,10 @@ fetch: $(ARCHIVE)
 extract: $(WORKDIR)
 build-dep: apt
 
-$(WORKDIR)/Makefile:| $(WORKDIR)
-	cd $(WORKDIR); ./autogen.sh $(CONFIGURE_ARGS)
-
-build: $(WORKDIR)/Makefile
+build: $(WORKDIR) build-dep
 	cd $(WORKDIR); make CMAKE_EXTRA_FLAGS="$(CMAKE_ARGS)"
 
 install:
 	cd $(WORKDIR); make install
 
-include ../../share/make/apt.rules
+include ../../rules/apt.rules
