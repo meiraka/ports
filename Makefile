@@ -1,4 +1,5 @@
 ALL = $(notdir $(wildcard packages/*))
+SUBMODULE = rules/apt.rules rules/goget.rules
 .PHONY: all clean $(ALL) help
 
 all: $(ALL)
@@ -8,7 +9,7 @@ clean:
 		cd "$$x"; make clean;cd ..;\
 		done
 
-$(ALL):
+$(ALL):| $(SUBMODULE)
 	@LIST="$@";\
 		for x in $$LIST; do\
 		cd "packages/$$x"; make; make install;cd ..;\
@@ -20,3 +21,6 @@ help:
 		echo $$x;\
 		done
 
+$(SUBMODULE):
+	git submodule init
+	git submodule update
