@@ -1,4 +1,4 @@
 [submodule "lib"]
 	path = rules
-	url = git@github.com:meiraka/make-anything.git
+	url = ../make-anything.git
 	branch = master
