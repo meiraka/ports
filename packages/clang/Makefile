@@ -49,16 +49,16 @@ clean:
 
 build-dep: apt
 
-builded_$(RELEASE):| $(LLVM)/config.log
+$(LLVM)/builded_$(RELEASE):| $(LLVM)/config.log
 	cd $(LLVM); make $(MAKE_ARGS)
-	touch builded_$(RELEASE)
+	touch $(LLVM)/builded_$(RELEASE)
 
-build: builded_$(RELEASE)
+build: $(LLVM)/builded_$(RELEASE)
 
-installed_$(RELEASE):| builded_$(RELEASE)
+$(LLVM)/installed_$(RELEASE):| $(LLVM)/builded_$(RELEASE)
 	cd $(LLVM); make install
-	touch installed_$(RELEASE)
+	touch $(LLVM)/installed_$(RELEASE)
 
-install: installed_$(RELEASE)
+install: $(LLVM)/installed_$(RELEASE)
 
 include ../../rules/apt.rules
