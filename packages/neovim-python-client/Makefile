@@ -25,6 +25,8 @@ extract: $(WORKDIR)
 build-dep: apt
 
 install:
-	cd $(WORKDIR); /usr/bin/python2 setup.py install --user
+	cd $(WORKDIR); /usr/bin/python setup.py install --user
+	-cd $(WORKDIR); /usr/bin/python2 setup.py install --user
+	-cd $(WORKDIR); /usr/bin/python3 setup.py install --user
 
 include ../../rules/apt.rules
