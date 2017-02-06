@@ -4,10 +4,22 @@ all: extract
 INSTALL_PREFIX?=$(HOME)
 REQUIRE_APT=curl
 
-OS=linux-amd64
+OS=$(shell uname -s | tr A-Z a-z)
+_ARCH=$(shell uname -m)
+ifeq ($(_ARCH), armv6l)
+ARCH=armv6l
+else ifeq ($(_ARCH), armv7l)
+# ARMv6 is upwards compatible with ARMv7
+ARCH=armv6l
+else ifeq ($(_ARCH), x86_64)
+ARCH=amd64
+else
+ARCH=386
+endif
+
 VERSION=1.7.1
 
-ARCHIVE=go$(VERSION).$(OS).tar.gz
+ARCHIVE=go$(VERSION).$(OS)-$(ARCH).tar.gz
 WORKDIR=go$(VERSION)
 INSTALL_PATH=$(INSTALL_PREFIX)/local/go
 
