@@ -17,7 +17,7 @@ else
 ARCH=386
 endif
 
-VERSION=1.8
+VERSION=1.9
 
 ARCHIVE=go$(VERSION).$(OS)-$(ARCH).tar.gz
 WORKDIR=go$(VERSION)
