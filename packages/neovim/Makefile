@@ -2,11 +2,11 @@
 all: build
 
 INSTALL_PREFIX?=$(HOME)
-REQUIRE_APT=git libtool libtool-bin autoconf automake cmake libncurses5-dev g++ pkg-config unzip
+REQUIRE_APT=ninja-build libtool libtool-bin autoconf automake cmake g++ pkg-config unzip texinfo
 
 USER=neovim
 REPO=neovim
-TAG=0.2.0
+TAG=0.4.2
 
 ARCHIVE=v$(TAG).tar.gz
 WORKDIR=$(REPO)-$(TAG)
